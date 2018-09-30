@@ -1,0 +1,34 @@
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+
+
+
+
+# Import custom functions/aliases
+if [ -f ~/.bash/common ]; then
+    . ~/.bash/common
+fi
+
+if [ -f ~/.bash/maven ]; then
+    . ~/.bash/maven
+fi
+
+if [ -f ~/.bash/git ]; then
+    . ~/.bash/git
+fi
+
+if [ -f ~/.bash/docker ]; then
+    . ~/.bash/docker
+fi
+
+if [ -f ~/.bash/wl ]; then
+    . ~/.bash/wl
+fi
+

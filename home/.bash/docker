@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# following setting comes from the "devops toolkit 2.1" book
+# it fixes some strange problem with mounting volumes
+export VIRTUALBOX_SHARE_FOLDER="$PWD:$PWD"
+
+alias docker-logs-last='docker logs "$(docker ps -l -q)"'
+
+function machine {
+	docker-machine create -d virtualbox --virtualbox-memory 6144 --virtualbox-cpu-count 4 $1 && beep
+}
+
+function machine-connect {
+	eval $(docker-machine env $1)
+}
+
+function docker-id {
+	docker ps -f name=$1 -q
+}
+
+function did {
+	docker ps -q -f name=$1 $2
+}
+
+function dlogs {
+	docker logs -f $(did $1)
+}
+
+function drmall {
+	for i in $(docker ps -q); do docker rm $(docker stop $i); done;
+}

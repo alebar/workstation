@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# scripts related only with WhiteLabel project
+# actual values of the config variables were removed
+
+alias influx-dev='influx -host *** -port ***'
+alias influx-metrics='influx -host 192.168.99.100 -port 8086'
+
+export MONITORING_METRICS_INFLUX_URL="http://192.168.99.100:8086"
+export MONITORING_METRICS_INFLUX_DB="DEV_INFLUX"
+
+function runwl {
+ARGS='  -Dspring.profiles.active=dev
+        -Dlog.root=/tmp/logs
+	-Xms128m -Xmx256m'
+
+	local settingsArgs="$PWD/.settings/args"
+	if [ -f "$settingsArgs" ] ; then
+		source $settingsArgs
+	fi
+
+        java -jar $ARGS $2 $1
+}
+
+function wlclone {
+        local tmp=$(mktemp)
+        local dir
+
+        customclone "$@" > $tmp
+        cat $tmp
+        dir=$(awk -F\' '/Changing directory to/ {print $2}' $tmp)
+        rm $tmp
+        printf "Copying WL hooks\n"
+        cp ~/whitelabel/wl/scripts/prepare-commit-msg "$dir/.git/hooks"
+}

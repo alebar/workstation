@@ -1,0 +1,12 @@
+#!/bin/bash
+
+alias c='(mvn clean && beep) || fail'
+alias i='(mvn install -Dlog.root=/tmp/logs && beep) || fail'
+alias is='(mvn install -DskipTests -Dskip.unit.tests=true && beep) || fail'
+alias ci='(mvn clean install -Dlog.root=/tmp/logs && beep) || fail'
+alias cis='(mvn clean install -DskipTests -Dskip.unit.tests=true -Dfindbugs.skip=true && beep) || fail'
+alias t='(mvn test -Dlog.root=/tmp/logs && beep) || fail'
+alias ct='(mvn clean test -Dlog.root=/tmp/logs && beep) || fail'
+alias dt='mvn dependency:tree > dt'
+
+export PATH=/home/alek/dev/maven/bin:$PATH

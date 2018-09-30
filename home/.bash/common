@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# spring-boot-cli allows quick creation of spring-boot projects
+export PATH=/home/alek/dev/spring-boot-cli/bin:$PATH
+export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-amd64"
+
+# starts local server
+function server {
+	python -m SimpleHTTPServer 8282
+}
+
+# changes the title of tmux pane
+function pane {
+	printf '\033]2;%s\033\\' $1
+}
+
+function append-line {
+	printf "$2\n" >> $1
+}
+
+# repeat 2 'echo bla'
+function repeat {
+	local n=$1
+	local cmd=$2
+	for (( i=0; i<$n; i++ ))
+	do
+		eval $cmd
+	done
+}
+
+function psjava {
+	ps -aux | grep java
+}

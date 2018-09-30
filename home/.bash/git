@@ -1,0 +1,24 @@
+#!/bin/bash
+
+alias pushu='git push -u origin "$(git curbra)"'
+
+function gitco {
+        git co $(git branch | grep $1)
+}
+
+function customclone {
+        local tmp=$(mktemp)
+        local dir
+
+        git clone --progress "$@" 2> $tmp
+        cat $tmp
+        dir=$(awk -F\' '/Cloning into/ {print $2}' $tmp)
+        rm $tmp
+        printf "Changing directory to '%s'\n" "$dir"
+        cd "$dir"
+        printf "Setting user.email\n"
+        git config user.email login@domain.com
+        printf "user.email set to %s\n" $(git config user.email)
+        printf "Changing to parent directory\n"
+        cd ..
+}
