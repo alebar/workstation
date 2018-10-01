@@ -21,4 +21,12 @@ if [ ! -f ~/.bash ]; then
 	mkdir ~/.bash
 fi
 cp -f ./home/.bash/* ~/.bash/
+cp -f ./home/.bashrc_aliases ~/.
+
+# handle the tmux conf
+if [ ! -f ~/.tmux ]; then
+	mkdir ~/.bash
+fi
+cp -f ./home/.tmux/* ~/.tmux
+cp -f ./home/.tmux.conf ~/.
 
