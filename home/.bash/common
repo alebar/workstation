@@ -6,7 +6,7 @@ export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-amd64"
 
 # starts local server
 function server {
-	python -m SimpleHTTPServer 8282
+	python3 -m http.server 8282
 }
 
 # changes the title of tmux pane
