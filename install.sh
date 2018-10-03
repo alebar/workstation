@@ -30,3 +30,7 @@ fi
 cp -f ./home/.tmux/* ~/.tmux
 cp -f ./home/.tmux.conf ~/.
 
+# remove the shortcuts for switching workspaces as it conflicts with idea history jumping
+# note: works for 18.04 (where there are by default only top and down workspaces)
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
