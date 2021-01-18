@@ -1,5 +1,5 @@
 alias e='exit'
-alias o='gnome-open'
+alias o='xdg-open'
 alias vb='vim ~/.bashrc'
 alias va='vim ~/.bash_aliases'
 alias vc='vim ~/.bash/common'
